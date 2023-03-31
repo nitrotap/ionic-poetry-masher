@@ -1,17 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Line Mash
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="center">
+  <ion-item>
+    <h1>Enter your lines below</h1>
+  </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-item>
+    <ion-textarea id="textAreaInput" type="text" [(ngModel)]="textInput" [autoGrow]="true" aria-label="Input poem"
+      (input)="randomizeLines()" placeholder="Your text here, split by line"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <h2>Randomized Lines</h2>
+    <ion-button>Save Stanza</ion-button>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-list>
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+        <ion-item *ngFor="let line of randomizedLines; let i = index">
+
+          <!-- <ion-checkbox (click)="getCheckedValue()" [(ngModel)]="checkedValues[i]">{{ line }}</ion-checkbox> -->
+          <ion-checkbox (ionChange)="onCheckboxChange($event, line)">
+            <ion-label>{{line}}</ion-label>
+          </ion-checkbox>
+
+
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+  </ion-item>
+
+
 </ion-content>
