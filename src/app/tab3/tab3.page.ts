@@ -15,7 +15,6 @@ import { CommonModule } from '@angular/common';
 })
 export class Tab3Page {
   savedFiles: string[] = [];
-  stanzas: string[] = [];
   fileNames: string[] = [];
   loadedArray: string[][] = [];
 
@@ -50,23 +49,11 @@ async loadArrayFromFile(fileName: string) {
 
 async loadAllArrays() {
   await this.getFiles()
+  let stanzas: any = [];
 
-  // console.log(this.fileNames)
-
-  // this.fileNames.map((element)=> {
-  //   console.log(element)
-  //   const files = this.loadArrayFromFile(element)
-  //   console.log(files)
-  // })
-
-  let b: any = [];
-
-  const a = await this.loadArrayFromFile(this.fileNames[0])
-  console.log(a)
-
-  b = this.fileNames.map((element) => {
-    b.push(this.loadArrayFromFile(element))
-    console.log(b)
+  stanzas = this.fileNames.map((element) => {
+    stanzas.push(this.loadArrayFromFile(element))
+    console.log(stanzas)
   })
 
 
@@ -74,47 +61,8 @@ async loadAllArrays() {
 
 }
 
-
-// // Load all arrays from files in the documents directory
-// async loadAllArrays() {
-//   const files = await this.getFiles();
-//   const arrays: any[][] = [];
-//   let b;
-
-//   console.log(files.files[0].name)
-//   this.loadArrayFromFile(files.files[0].name)
-
-//   const a = files.files.forEach(element => {
-//     // console.log(element.name) // filename
-//     b = this.loadArrayFromFile(element.name)
-//     console.log(b)
-    
-//   });
-
-
- 
-  
-
-
-//   // for (let file of files.files) {
-//   //   const array = await this.loadArrayFromFile(file);
-//   //   arrays.push(array);
-//   // }
-
-//   return arrays;
-// }
-
-
-  
-
-
-  // ngOnInit() {
-  //   this.loadAllArrays()
-    
-
-  // }
-
-  async ngOnInit() {
+  async ionViewDidEnter() {
+    this.loadedArray = []
     const folderPath = Directory.Documents;
     const files = await Filesystem.readdir({directory: folderPath, path: ''});
     
