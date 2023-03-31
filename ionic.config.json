@@ -1,7 +1,0 @@
-{
-  "name": "line-mash",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
