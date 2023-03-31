@@ -1,17 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      History
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <h1>Saved Stanzas</h1>
+  </ion-item>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-item>
+    <ion-list>
+      <ion-item *ngFor="let stanza of loadedArray">
+        {{stanza}}
+      </ion-item>
+
+    </ion-list>
+  </ion-item>
+
+
 </ion-content>

@@ -5,6 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { IonCheckbox, IonLabel } from '@ionic/angular';
+import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
+import { Platform } from '@ionic/angular';
+import { Preferences } from '@capacitor/preferences';
+
+
+
 
 
 
@@ -67,6 +74,75 @@ export class Tab2Page {
 
   }
 
+  
+  
+  
+
+  // async saveArrayToFileSystem(array: any[]): Promise<void> {
+  //   const now = new Date();
+  //   const year = now.getFullYear();
+  //   const month = String(now.getMonth() + 1).padStart(2, '0');
+  //   const day = String(now.getDate()).padStart(2, '0');
+  //   const hours = String(now.getHours()).padStart(2, '0');
+  //   const minutes = String(now.getMinutes()).padStart(2, '0');
+  //   const seconds = String(now.getSeconds()).padStart(2, '0');
+  //   const filename = `${year}${month}${day}_${hours}${minutes}${seconds}.txt`;
+
+
+  //   const content = JSON.stringify(array);
+  //   const result = await Filesystem.writeFile({
+  //     path: filename,
+  //     data: content,
+  //     directory: Directory.Documents,
+  //     encoding: Encoding.UTF8,
+  //   });
+  //   console.log(`File ${result.uri} saved`);
+  // }
+
+  async saveArrayToFileSystem(array: any[]) {
+    // Get the date and time to use as the filename
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const filename = `${year}${month}${day}_${hours}${minutes}${seconds}.txt`;
+
+  
+    // Convert the array to a string
+    const text = JSON.stringify(array);
+  
+    // Check if the app has permission to write to the filesystem
+    const permission = await Filesystem.requestPermissions();
+    if (permission.publicStorage === 'granted') {
+      // Save the file to the app's public storage directory
+      const result = await Filesystem.writeFile({
+        path: filename,
+        data: text,
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8
+      });
+  
+      // Save the filename to the app's preferences
+      await Preferences.set({
+        key: 'filename',
+        value: result.uri
+      });
+  
+      console.log(`File saved to ${result.uri}`);
+    } else {
+      console.log('Permission to write to filesystem denied');
+    }
+  }
+  
+  
+
+  async saveStanza() {
+    this.saveArrayToFileSystem(this.checkedValues)
+  }
+
 
   constructor() {
 
@@ -77,8 +153,8 @@ export class Tab2Page {
   }
 
   randomizeLines() {
- // Split the input text into separate lines and remove empty lines
- const lines = this.textInput.split('\n').filter(line => line.trim() !== '');
+  // Split the input text into separate lines and remove empty lines
+  const lines = this.textInput.split('\n').filter(line => line.trim() !== '');
 
     // Shuffle the lines using the Fisher-Yates algorithm
     for (let i = lines.length - 1; i > 0; i--) {
@@ -90,6 +166,7 @@ export class Tab2Page {
     // console.log(lines)
     this.randomizedLines = lines;
   }
+
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
     // The `from` and `to` properties contain the index of the item
@@ -106,5 +183,10 @@ export class Tab2Page {
   logToConsole(text: string) {
     console.log(text)
   }
+
+  ngOnInit() {
+    this.randomizeLines();
+  }
+
 
 }
