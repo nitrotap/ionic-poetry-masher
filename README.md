@@ -4,7 +4,6 @@
 
 Randomize your poetry lines to make the best stanzas, using Ionic Capacitor for cross-platform development. Drag and drop your lines and save stanzas to your mobile device or browser.
 
-<br />
 ![badmath](https://img.shields.io/github/languages/top/nitrotap/ionic-poetry-masher)
 ![badmath](https://img.shields.io/github/issues/nitrotap/ionic-poetry-masher)
 ![badmath](https://img.shields.io/github/forks/nitrotap/ionic-poetry-masher)  
