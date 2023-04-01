@@ -1,8 +1,10 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'line-mash',
+  // appId: 'nitrotap.dev',
+  // appName: 'Poem Line Mash',
+  appId: 'com.nitrotap.poemLineMash',
+  appName: 'Poem Line Mash',
   webDir: 'www',
   bundledWebRuntime: false
 };
