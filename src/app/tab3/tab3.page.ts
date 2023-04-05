@@ -6,6 +6,12 @@ import { Capacitor } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { CommonModule } from '@angular/common';
+
+
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+
+
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -55,11 +61,18 @@ export class Tab3Page {
       stanzas.push(this.loadArrayFromFile(element))
       console.log(stanzas)
     })
-
-
-
-
   }
+
+
+  // TODO: not tested
+  async deleteStanza(fileName: string) {
+    await Filesystem.deleteFile({
+      directory: Directory.Documents,
+      path: fileName
+    })
+  }
+
+
 
   async ionViewDidEnter() {
     this.loadedArray = []
@@ -79,6 +92,10 @@ export class Tab3Page {
   }
 
 
-  constructor() { }
+  constructor(
+    private actionSheetController: ActionSheetController,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) { }
 
 }
