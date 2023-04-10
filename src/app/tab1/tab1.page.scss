@@ -1,9 +1,5 @@
 
 
-.btn {
-    background-color: palegreen
-}
-
 .center {
     display: flex;
     flex-direction: column;
@@ -13,4 +9,46 @@
     text-align: center;
     width: auto;
     height: auto;
+    margin-bottom: 2rem;
+}
+
+.container {
+    background-image: url('../../assets/paper.png');
+    height: 95vh;
+    background-size: cover; /* Adjust to your needs */
+    background-position: center; /* Adjust to your needs */
+    background-repeat: no-repeat; /* Adjust to your needs */
+    width: 100%;
+    position: relative; /* Required for child elements */
+  
+}
+
+.container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Replace 0.5 with your desired opacity value (0 to 1) */
+  }
+  
+
+.title {
+    font-size: 5em;
+    font-weight: bold;
+    color: #000000;
+    padding: 1rem;
+}
+
+.subtitle {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000000;
+    margin: 20px;
+    padding: 0;
+    height: 10vh;
+    width: 80vw;
+
 }

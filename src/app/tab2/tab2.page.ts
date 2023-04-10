@@ -59,9 +59,9 @@ export class Tab2Page {
 
   onCheckboxChange(event: any, item: any) {
     if (event.detail.checked) {
-      console.log(item + ' is checked.');
+      // console.log(item + ' is checked.');
       this.checkedValues.push(item)
-      console.log(this.checkedValues)
+      // console.log(this.checkedValues)
     } else {
       console.log(item + ' is unchecked.');
       this.checkedValues = this.checkedValues.filter(text => text !== item)
@@ -119,16 +119,39 @@ export class Tab2Page {
 
 
   async saveStanza() {
-    this.saveArrayToFileSystem(this.checkedValues)
-    const alert = await this.toastController.create({
-      message: 'Stanza saved',
-      duration: 2000,
-      position: 'top',
-      color: 'success'
+    if (this.checkedValues.length === 0) {
+      const alert = await this.toastController.create({
+        message: 'Error! Stanza not saved',
+        duration: 2000,
+        position: 'top',
+        color: 'danger'
 
-    });
+      });
+      await alert.present();
 
-    await alert.present();
+    } else {
+      try {
+        this.saveArrayToFileSystem(this.checkedValues)
+        const alert = await this.toastController.create({
+          message: 'Stanza saved',
+          duration: 2000,
+          position: 'top',
+          color: 'success'
+
+        });
+        await alert.present();
+      } catch (error) {
+        const alert = await this.toastController.create({
+          message: 'Error! Stanza not saved',
+          duration: 2000,
+          position: 'top',
+          color: 'danger'
+
+        });
+        await alert.present();
+
+      }
+    }
   }
 
 
