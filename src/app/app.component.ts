@@ -13,5 +13,5 @@ import { FormsModule } from '@angular/forms'; // import the FormsModule
 export class AppComponent {
   public environmentInjector = inject(EnvironmentInjector);
 
-  constructor() {}
+  constructor() { }
 }

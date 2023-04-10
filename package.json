@@ -1,5 +1,5 @@
 {
-  "name": "line-mash",
+  "name": "ionic-poetry-masher",
   "version": "0.0.1",
   "author": "nitrotap",
   "homepage": "https://github.com/nitrotap/ionic-poetry-masher",
@@ -46,7 +46,7 @@
     "@angular/compiler": "^15.0.0",
     "@angular/compiler-cli": "^15.0.0",
     "@angular/language-service": "^15.0.0",
-    "@capacitor/cli": "4.7.1",
+    "@capacitor/cli": "4.7.3",
     "@ionic/angular-toolkit": "^9.0.0",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^12.11.1",
