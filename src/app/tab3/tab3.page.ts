@@ -8,6 +8,7 @@ import { Preferences } from '@capacitor/preferences';
 import { CommonModule } from '@angular/common';
 
 
+
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 
 
@@ -65,11 +66,37 @@ export class Tab3Page {
 
 
   // TODO: not tested
-  async deleteStanza(fileName: string) {
+  async deleteStanza(stanza: any) {
+    // console.log(stanza)
+
+    const files = await Filesystem.readdir({
+      directory: Directory.Documents,
+      path: ''
+    })
+
+
+    // console.log(files.files)
+    const index = this.loadedArray.indexOf(stanza);
+    // console.log(index)
+    // console.log(files.files[index].name)
+
     await Filesystem.deleteFile({
       directory: Directory.Documents,
-      path: fileName
-    })
+      path: files.files[index].name
+    });
+
+    this.ionViewDidEnter();
+
+    const alert = await this.toastController.create({
+      message: 'Stanza deleted',
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+
+    });
+
+    await alert.present();
+
   }
 
 

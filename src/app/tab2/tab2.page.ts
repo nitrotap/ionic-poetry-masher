@@ -10,6 +10,10 @@ import { Capacitor } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+
+
+
 
 
 
@@ -116,10 +120,21 @@ export class Tab2Page {
 
   async saveStanza() {
     this.saveArrayToFileSystem(this.checkedValues)
+    const alert = await this.toastController.create({
+      message: 'Stanza saved',
+      duration: 2000,
+      position: 'top',
+      color: 'success'
+
+    });
+
+    await alert.present();
   }
 
 
-  constructor() {
+  constructor(
+    private toastController: ToastController
+  ) {
 
   }
 
