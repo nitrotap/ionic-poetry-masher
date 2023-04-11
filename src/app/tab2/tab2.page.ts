@@ -12,7 +12,7 @@ import { Preferences } from '@capacitor/preferences';
 
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 
-
+import { FooterComponent } from '../footer/footer.component';
 
 
 
@@ -24,7 +24,7 @@ import { ActionSheetController, AlertController, ToastController } from '@ionic/
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [IonicModule, ExploreContainerComponent, FormsModule, CommonModule]
+  imports: [IonicModule, ExploreContainerComponent, FormsModule, CommonModule, FooterComponent]
 })
 export class Tab2Page {
 

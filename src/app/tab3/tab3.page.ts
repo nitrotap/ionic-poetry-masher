@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 
 
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { FooterComponent } from '../footer/footer.component';
 
 
 
@@ -18,7 +19,7 @@ import { ActionSheetController, AlertController, ToastController } from '@ionic/
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   standalone: true,
-  imports: [IonicModule, ExploreContainerComponent, CommonModule],
+  imports: [IonicModule, ExploreContainerComponent, CommonModule, FooterComponent],
 })
 export class Tab3Page {
   savedFiles: string[] = [];
