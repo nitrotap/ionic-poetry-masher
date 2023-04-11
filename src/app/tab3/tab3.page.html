@@ -1,40 +1,43 @@
 <ion-content [fullscreen]="true">
-  <div class="center">
-    <ion-item>
-      <h1>Saved Stanzas</h1>
-    </ion-item>
+  <div>
+    <div>
+      <ion-item>
+        <ion-label class="center">
+          <h1 class="center">Saved Stanzas</h1>
+        </ion-label>
+      </ion-item>
 
-    <ion-item>
-      <ion-list>
-        <ion-card *ngFor="let stanza of loadedArray">
-          <!-- <ion-card-header>
+      <ion-item>
+        <ion-list>
+          <ion-card *ngFor="let stanza of loadedArray">
+            <!-- <ion-card-header>
             <ion-card-title>Stanza</ion-card-title>
           </ion-card-header> -->
-          <ion-item>
-            <ion-icon slot="start" name="trash-outline" (click)="deleteStanza(stanza)">
-            </ion-icon>
-            <ion-label>
-              <div>
-                <ion-item *ngFor="let line of stanza">
-                  <ion-label>
-                    <ion-text>
-                      <h1>
-                        {{line}}
-                      </h1>
-                    </ion-text>
-                  </ion-label>
-                </ion-item>
-              </div>
-            </ion-label>
-          </ion-item>
+            <ion-item>
+              <ion-icon slot="start" name="trash-outline" (click)="deleteStanza(stanza)">
+              </ion-icon>
+              <ion-label>
+                <div>
+                  <ion-item *ngFor="let line of stanza">
+                    <ion-label class="wrapper">
+                      <ion-text>
+                        <h1>
+                          {{line}}
+                        </h1>
+                      </ion-text>
+                    </ion-label>
+                  </ion-item>
+                </div>
+              </ion-label>
+            </ion-item>
 
-        </ion-card>
-
-
+          </ion-card>
 
 
 
-        <!-- <ion-item-sliding *ngFor="let stanza of loadedArray">
+
+
+          <!-- <ion-item-sliding *ngFor="let stanza of loadedArray">
           <ion-item>
             <ion-icon slot="start" name="person-outline"></ion-icon>
             <ion-label>
@@ -56,8 +59,9 @@
           </ion-item-options>
 
         </ion-item-sliding> -->
-      </ion-list>
-    </ion-item>
+        </ion-list>
+      </ion-item>
+    </div>
   </div>
 
 

@@ -1,87 +1,88 @@
 <ion-content [fullscreen]="true">
-  <div class="center">
-    <ion-item class="center">
-      <h1>Enter your lines below</h1>
-    </ion-item>
-  </div>
+  <div class="container">
+    <div class="center">
+      <ion-item class="center">
+        <h1>Enter your lines below</h1>
+      </ion-item>
+    </div>
 
 
-  <div class="center">
-    <ion-item class="center">
-      <ion-textarea fill="outline" id="textAreaInput" type="text" [(ngModel)]="textInput" [autoGrow]="true"
-        aria-label="Input poem" (input)="updateLines()" placeholder="Your text here, split by line"></ion-textarea>
-    </ion-item>
+    <div class="center">
+      <ion-item class="center">
+        <ion-textarea fill="outline" id="textAreaInput" type="text" [(ngModel)]="textInput" [autoGrow]="true"
+          aria-label="Input poem" (input)="updateLines()" placeholder="Your text here, split by line"></ion-textarea>
+      </ion-item>
 
-    <ion-item>
-      <ion-button size="large" (click)="randomizeLines()">Mash Lines</ion-button>
-    </ion-item>
-  </div>
-
-
+      <ion-item>
+        <ion-button size="large" (click)="randomizeLines()">Mash Lines</ion-button>
+      </ion-item>
+    </div>
 
 
-  <ion-grid>
-    <ion-row>
-      <ion-col style="display: flex; justify-content: center;">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title style="display: flex; justify-content: center;">
-              <h1>
-                Randomized Lines
-              </h1>
-            </ion-card-title>
-            <ion-card-subtitle style="display: flex; justify-content: center;">
-              <h6>
-                Choose lines to save
-              </h6>
-            </ion-card-subtitle>
-
-          </ion-card-header>
-          <ion-list>
-            <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
-              <ion-item *ngFor="let line of randomizedLines; let i = index">
-                <ion-label class="wrapper">{{line}}</ion-label>
 
 
-                <ion-checkbox (ionChange)="onCheckboxChange($event, line)">
-                </ion-checkbox>
+    <ion-grid>
+      <ion-row>
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title style="display: flex; justify-content: center;">
+                <h1>
+                  Randomized Lines
+                </h1>
+              </ion-card-title>
+              <ion-card-subtitle style="display: flex; justify-content: center;">
+                <h6>
+                  Choose lines to save
+                </h6>
+              </ion-card-subtitle>
 
-
-                <ion-reorder slot="end"></ion-reorder>
-              </ion-item>
-            </ion-reorder-group>
-          </ion-list>
-        </ion-card>
-      </ion-col>
-
-
-      <ion-col style="display: flex; justify-content: center;">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title style="display: flex; justify-content: center;">
-              <h1>
-                Stanzas to save
-              </h1>
-            </ion-card-title>
-            <ion-button (click)="saveStanza()">Save Stanza</ion-button>
-
-          </ion-card-header>
-          <ion-card-content>
+            </ion-card-header>
             <ion-list>
-              <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderSaved($any($event))">
-                <ion-item *ngFor="let line of checkedValues; let i = index">
+              <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+                <ion-item *ngFor="let line of randomizedLines; let i = index">
                   <ion-label class="wrapper">{{line}}</ion-label>
+
+
+                  <ion-checkbox (ionChange)="onCheckboxChange($event, line)">
+                  </ion-checkbox>
+
+
                   <ion-reorder slot="end"></ion-reorder>
                 </ion-item>
               </ion-reorder-group>
             </ion-list>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+          </ion-card>
+        </ion-col>
 
-    </ion-row>
-  </ion-grid>
 
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title style="display: flex; justify-content: center;">
+                <h1>
+                  Stanzas to save
+                </h1>
+              </ion-card-title>
+              <ion-button (click)="saveStanza()">Save Stanza</ion-button>
+
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorderSaved($any($event))">
+                  <ion-item *ngFor="let line of checkedValues; let i = index">
+                    <ion-label class="wrapper">{{line}}</ion-label>
+                    <ion-reorder slot="end"></ion-reorder>
+                  </ion-item>
+                </ion-reorder-group>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
 
 
 </ion-content>

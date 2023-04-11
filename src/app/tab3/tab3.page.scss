@@ -9,3 +9,28 @@
     width: auto;
     height: auto;
 }
+
+.wrapper {
+    overflow: visible;
+    white-space: normal;
+}
+
+.container {
+    background-image: url('../../assets/paper.png');
+    background-size: cover; /* Adjust to your needs */
+    background-position: center; /* Adjust to your needs */
+    background-repeat: no-repeat; /* Adjust to your needs */
+    width: 100%;
+
+    position: relative; /* Required for child elements */
+}
+
+.container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Replace 0.5 with your desired opacity value (0 to 1) */
+}
