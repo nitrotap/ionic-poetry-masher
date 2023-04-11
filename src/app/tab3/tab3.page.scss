@@ -16,11 +16,11 @@
 }
 
 .container {
-    background-image: url('../../assets/paper.png');
-    background-size: cover; /* Adjust to your needs */
-    background-position: center; /* Adjust to your needs */
-    background-repeat: no-repeat; /* Adjust to your needs */
-    width: 100%;
+    // background-image: url('../../assets/paper.png');
+    // background-size: cover; /* Adjust to your needs */
+    // background-position: center; /* Adjust to your needs */
+    // background-repeat: no-repeat; /* Adjust to your needs */
+    height: 90vh;
 
     position: relative; /* Required for child elements */
 }
