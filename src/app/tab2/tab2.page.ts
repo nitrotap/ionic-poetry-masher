@@ -180,6 +180,14 @@ export class Tab2Page {
     this.randomizedLines = lines;
   }
 
+  updateLines() {
+    // Split the input text into separate lines and remove empty lines
+    const lines = this.textInput.split('\n').filter(line => line.trim() !== '');
+    this.randomizedLines = lines;
+  }
+
+
+
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
     // The `from` and `to` properties contain the index of the item
