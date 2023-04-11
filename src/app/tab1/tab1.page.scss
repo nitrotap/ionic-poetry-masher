@@ -17,7 +17,7 @@
 
 .container {
     background-image: url('../../assets/paper.png');
-    height: 95vh;
+    height: 85vh;
     background-size: cover; /* Adjust to your needs */
     background-position: center; /* Adjust to your needs */
     background-repeat: no-repeat; /* Adjust to your needs */
@@ -49,4 +49,15 @@
     font-size: 1.5em;
     font-weight: bold;
     color: #000000;
+}
+
+.madewithheart {
+    color: #555;
+    display: flex;
+    align-items: center;
+  }
+
+.heart-icon {
+    color: #ff2d55;
+    margin-left: 5px;
 }
