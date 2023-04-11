@@ -20,7 +20,8 @@
     // background-size: cover; /* Adjust to your needs */
     // background-position: center; /* Adjust to your needs */
     // background-repeat: no-repeat; /* Adjust to your needs */
-    height: 90vh;
+    height: auto;
+    margin-bottom: 20px;
 
     position: relative; /* Required for child elements */
 }
