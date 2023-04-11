@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "author": "nitrotap",
   "homepage": "https://github.com/nitrotap/ionic-poetry-masher",
+  "engines": {
+    "node": "16.14.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
