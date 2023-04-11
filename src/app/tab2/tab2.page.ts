@@ -10,6 +10,10 @@ import { Capacitor } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+
+
+
 
 
 
@@ -55,9 +59,9 @@ export class Tab2Page {
 
   onCheckboxChange(event: any, item: any) {
     if (event.detail.checked) {
-      console.log(item + ' is checked.');
+      // console.log(item + ' is checked.');
       this.checkedValues.push(item)
-      console.log(this.checkedValues)
+      // console.log(this.checkedValues)
     } else {
       console.log(item + ' is unchecked.');
       this.checkedValues = this.checkedValues.filter(text => text !== item)
@@ -115,11 +119,45 @@ export class Tab2Page {
 
 
   async saveStanza() {
-    this.saveArrayToFileSystem(this.checkedValues)
+    if (this.checkedValues.length === 0) {
+      const alert = await this.toastController.create({
+        message: 'Error! Stanza not saved',
+        duration: 2000,
+        position: 'bottom',
+        color: 'danger'
+
+      });
+      await alert.present();
+
+    } else {
+      try {
+        this.saveArrayToFileSystem(this.checkedValues)
+        const alert = await this.toastController.create({
+          message: 'Stanza saved',
+          duration: 2000,
+          position: 'bottom',
+          color: 'success'
+
+        });
+        await alert.present();
+      } catch (error) {
+        const alert = await this.toastController.create({
+          message: 'Error! Stanza not saved',
+          duration: 2000,
+          position: 'top',
+          color: 'danger'
+
+        });
+        await alert.present();
+
+      }
+    }
   }
 
 
-  constructor() {
+  constructor(
+    private toastController: ToastController
+  ) {
 
   }
 
@@ -142,6 +180,14 @@ export class Tab2Page {
     this.randomizedLines = lines;
   }
 
+  updateLines() {
+    // Split the input text into separate lines and remove empty lines
+    const lines = this.textInput.split('\n').filter(line => line.trim() !== '');
+    this.randomizedLines = lines;
+  }
+
+
+
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
     // The `from` and `to` properties contain the index of the item
@@ -152,6 +198,23 @@ export class Tab2Page {
     // where the gesture ended. This method can also be called directly
     // by the reorder group
     ev.detail.complete();
+  }
+
+  handleReorderSaved(ev: CustomEvent<ItemReorderEventDetail>) {
+    // The `from` and `to` properties contain the index of the item
+    // when the drag started and ended, respectively
+    console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
+
+    // Finish the reorder and position the item in the DOM based on
+    // where the gesture ended. This method can also be called directly
+    // by the reorder group
+    ev.detail.complete();
+
+    // update checkedValues array with order of saved stanzas
+    let a = this.checkedValues[ev.detail.from];
+    let b = this.checkedValues[ev.detail.to];
+    this.checkedValues[ev.detail.from] = b;
+    this.checkedValues[ev.detail.to] = a;
   }
 
 

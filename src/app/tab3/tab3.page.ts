@@ -6,6 +6,13 @@ import { Capacitor } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { CommonModule } from '@angular/common';
+
+
+
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+
+
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -17,6 +24,7 @@ export class Tab3Page {
   savedFiles: string[] = [];
   fileNames: string[] = [];
   loadedArray: string[][] = [];
+  parsedArray: string[][] = [];
 
 
 
@@ -36,30 +44,40 @@ export class Tab3Page {
 
 
 
-  // Load an array from a file
-  async loadArrayFromFile(fileName: string) {
-    const data = await Filesystem.readFile({
+  async deleteStanza(stanza: any) {
+    // console.log(stanza)
+
+    const files = await Filesystem.readdir({
       directory: Directory.Documents,
-      path: fileName,
-      encoding: Encoding.UTF8
-    });
-    // console.log(JSON.parse(data.data))
-    return JSON.parse(data.data);
-  }
-
-  async loadAllArrays() {
-    await this.getFiles()
-    let stanzas: any = [];
-
-    stanzas = this.fileNames.map((element) => {
-      stanzas.push(this.loadArrayFromFile(element))
-      console.log(stanzas)
+      path: ''
     })
 
 
+    // console.log(files.files)
+    const index = this.loadedArray.indexOf(stanza);
+    // console.log(index)
+    // console.log(files.files[index].name)
 
+    await Filesystem.deleteFile({
+      directory: Directory.Documents,
+      path: files.files[index].name
+    });
+
+    this.ionViewDidEnter();
+
+    const alert = await this.toastController.create({
+      message: 'Stanza deleted',
+      duration: 2000,
+      position: 'bottom',
+      color: 'danger'
+
+    });
+
+    await alert.present();
 
   }
+
+
 
   async ionViewDidEnter() {
     this.loadedArray = []
@@ -79,6 +97,13 @@ export class Tab3Page {
   }
 
 
-  constructor() { }
+
+
+
+  constructor(
+    private actionSheetController: ActionSheetController,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) { }
 
 }
