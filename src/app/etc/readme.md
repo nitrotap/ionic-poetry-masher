@@ -12,6 +12,8 @@ ionic cap open android
 add local.properties file to /android folder
 
 add permissions to android/AndroidManifest.xml
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 update versionCode and versionName in android/app/build.gradle and sync grade files
 

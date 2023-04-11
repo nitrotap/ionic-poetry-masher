@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ItemReorderEventDetail } from '@ionic/angular';
@@ -24,7 +23,7 @@ import { FooterComponent } from '../footer/footer.component';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [IonicModule, ExploreContainerComponent, FormsModule, CommonModule, FooterComponent]
+  imports: [IonicModule, FormsModule, CommonModule, FooterComponent]
 })
 export class Tab2Page {
 
@@ -118,41 +117,152 @@ export class Tab2Page {
 
 
 
+  // async saveStanza() {
+
+
+  //   await Filesystem.requestPermissions();
+
+  //   await Filesystem.checkPermissions();
+
+
+
+
+
+  //   if (this.checkedValues.length === 0) {
+  //     const alert = await this.toastController.create({
+  //       message: 'Error! Stanza not saved. No checked lines.',
+  //       duration: 2000,
+  //       position: 'bottom',
+  //       color: 'danger'
+
+  //     });
+  //     await alert.present();
+
+  //   } else {
+  //     try {
+
+  //       await this.saveArrayToFileSystem(this.checkedValues)
+  //       const alert = await this.toastController.create({
+  //         message: 'Stanza saved',
+  //         duration: 2000,
+  //         position: 'bottom',
+  //         color: 'success'
+
+  //       });
+  //       await alert.present();
+  //     } catch (error) {
+  //       const alert = await this.toastController.create({
+  //         message: 'Error! Stanza not saved. No checked lines. or ' + error,
+  //         duration: 2000,
+  //         position: 'top',
+  //         color: 'danger'
+
+  //       });
+  //       await alert.present();
+
+  //     }
+  //   }
+  // }
+
+  // async saveStanza() {
+  //   try {
+  //     // Request permission
+  //     await Filesystem.requestPermissions();
+
+  //     // Check permission
+  //     const permissionResult = await Filesystem.checkPermissions();
+  //     if (permissionResult.publicStorage === 'granted') {
+  //       // Permission granted, proceed with saving stanza
+  //       if (this.checkedValues.length === 0) {
+  //         const alert = await this.toastController.create({
+  //           message: 'Error! Stanza not saved. No checked lines.',
+  //           duration: 2000,
+  //           position: 'bottom',
+  //           color: 'danger'
+  //         });
+  //         await alert.present();
+  //       } else {
+  //         await this.saveArrayToFileSystem(this.checkedValues);
+  //         const alert = await this.toastController.create({
+  //           message: 'Stanza saved',
+  //           duration: 2000,
+  //           position: 'bottom',
+  //           color: 'success'
+  //         });
+  //         await alert.present();
+  //       }
+  //     } else {
+  //       // Permission denied
+  //       const alert = await this.toastController.create({
+  //         message: 'Error! Stanza not saved. Permission denied.',
+  //         duration: 2000,
+  //         position: 'top',
+  //         color: 'danger'
+  //       });
+  //       await alert.present();
+  //     }
+  //   } catch (error) {
+  //     // Handle other errors
+  //     const alert = await this.toastController.create({
+  //       message: 'Error! Stanza not saved. ' + error,
+  //       duration: 2000,
+  //       position: 'top',
+  //       color: 'danger'
+  //     });
+  //     await alert.present();
+  //   }
+  // }
+
   async saveStanza() {
-    if (this.checkedValues.length === 0) {
-      const alert = await this.toastController.create({
-        message: 'Error! Stanza not saved',
-        duration: 2000,
-        position: 'bottom',
-        color: 'danger'
+    try {
+      // Request permission
+      await Filesystem.requestPermissions();
 
-      });
-      await alert.present();
-
-    } else {
-      try {
-        this.saveArrayToFileSystem(this.checkedValues)
+      // Check permission
+      const permissionResult = await Filesystem.checkPermissions();
+      if (permissionResult.publicStorage === 'granted') {
+        // Permission granted, proceed with saving stanza
+        if (this.checkedValues.length === 0) {
+          const alert = await this.toastController.create({
+            message: 'Error! Stanza not saved. No checked lines.',
+            duration: 2000,
+            position: 'bottom',
+            color: 'danger'
+          });
+          await alert.present();
+        } else {
+          await this.saveArrayToFileSystem(this.checkedValues);
+          const alert = await this.toastController.create({
+            message: 'Stanza saved',
+            duration: 2000,
+            position: 'bottom',
+            color: 'success'
+          });
+          await alert.present();
+        }
+      } else {
+        // Permission denied or not requested
         const alert = await this.toastController.create({
-          message: 'Stanza saved',
-          duration: 2000,
-          position: 'bottom',
-          color: 'success'
-
-        });
-        await alert.present();
-      } catch (error) {
-        const alert = await this.toastController.create({
-          message: 'Error! Stanza not saved',
-          duration: 2000,
+          message: 'Error! Stanza not saved. Permission denied. This app needs permission to write to the filesystem to save and view saved stanzas. If permission is denied twice, please go to Settings > Apps > Poem Line Mash > Permissions > Files and Media > Allow Access.',
+          duration: 5000,
           position: 'top',
           color: 'danger'
-
         });
         await alert.present();
-
       }
+    } catch (error) {
+      // Handle other errors
+      const alert = await this.toastController.create({
+        message: 'Error! Stanza not saved. ' + error,
+        duration: 2000,
+        position: 'top',
+        color: 'danger'
+      });
+      await alert.present();
     }
   }
+
+
 
 
   constructor(
