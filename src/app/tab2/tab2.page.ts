@@ -123,7 +123,7 @@ export class Tab2Page {
       const alert = await this.toastController.create({
         message: 'Error! Stanza not saved',
         duration: 2000,
-        position: 'top',
+        position: 'bottom',
         color: 'danger'
 
       });
@@ -135,7 +135,7 @@ export class Tab2Page {
         const alert = await this.toastController.create({
           message: 'Stanza saved',
           duration: 2000,
-          position: 'top',
+          position: 'bottom',
           color: 'success'
 
         });

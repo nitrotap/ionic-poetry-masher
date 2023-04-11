@@ -24,6 +24,7 @@ export class Tab3Page {
   savedFiles: string[] = [];
   fileNames: string[] = [];
   loadedArray: string[][] = [];
+  parsedArray: string[][] = [];
 
 
 
@@ -43,29 +44,6 @@ export class Tab3Page {
 
 
 
-  // Load an array from a file
-  async loadArrayFromFile(fileName: string) {
-    const data = await Filesystem.readFile({
-      directory: Directory.Documents,
-      path: fileName,
-      encoding: Encoding.UTF8
-    });
-    // console.log(JSON.parse(data.data))
-    return JSON.parse(data.data);
-  }
-
-  async loadAllArrays() {
-    await this.getFiles()
-    let stanzas: any = [];
-
-    stanzas = this.fileNames.map((element) => {
-      stanzas.push(this.loadArrayFromFile(element))
-      console.log(stanzas)
-    })
-  }
-
-
-  // TODO: not tested
   async deleteStanza(stanza: any) {
     // console.log(stanza)
 
@@ -90,7 +68,7 @@ export class Tab3Page {
     const alert = await this.toastController.create({
       message: 'Stanza deleted',
       duration: 2000,
-      position: 'top',
+      position: 'bottom',
       color: 'danger'
 
     });
@@ -117,6 +95,9 @@ export class Tab3Page {
       this.loadedArray.push(savedArray);
     }
   }
+
+
+
 
 
   constructor(
