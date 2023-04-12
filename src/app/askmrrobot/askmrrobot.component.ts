@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environments';
 import { FormsModule } from '@angular/forms';
 
 import { Configuration, OpenAIApi } from "openai";
@@ -28,17 +28,29 @@ export class AskmrrobotComponent implements OnInit {
   async getRobotText() {
     const openai = new OpenAIApi(this.configuration);
     try {
-      const completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: "write a one line poem about" + this.userText,
+      // const completion = await openai.createCompletion({
+      //   model: "text-davinci-003",
+      //   prompt: "write a one line poem about" + this.userText,
+      //   temperature: 0.6,
+      //   max_tokens: 20,
+      // });
+
+      // this.robotText = completion.data.choices[0].text;
+
+
+
+      const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "user", content: 'write a one line poem about ' + this.userText },
+        ],
         temperature: 0.6,
-        max_tokens: 20,
+        max_tokens: 50
       });
 
-      // console.log(completion)
-      // console.log(completion.data.choices[0].text)
 
-      this.robotText = completion.data.choices[0].text;
+      this.robotText = completion.data.choices[0].message?.content;
+
 
     } catch (error) {
       console.log(error)

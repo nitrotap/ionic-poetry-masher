@@ -1,14 +1,24 @@
-<ion-card>
+<ion-card class="center">
     <ion-card-header>
         <ion-card-title>
             <h1>Ask A Robot</h1>
         </ion-card-title>
+        <ion-card-subtitle>
+            <h2>Generate a line with a prompt</h2>
+        </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
-        <h1>Enter 1 word to generate a line about it</h1>
-        <ion-input label="Text input" placeholder="Enter text" [(ngModel)]="userText"></ion-input>
+    <ion-card-content class="center">
+        <ion-item>
+            <ion-label>Enter text</ion-label>
+            <ion-input [(ngModel)]="userText" fill="solid" placeholder="Type a word"></ion-input>
+        </ion-item>
         <ion-button (click)="getRobotText()">Get a line about {{userText}}</ion-button>
-        <h1>Mr Robot says :</h1>
-        <h2>{{robotText}}</h2>
+
+        <ion-item>
+            <h1>The robot says:</h1>
+        </ion-item>
+        <ion-item>
+            <h1>{{robotText}}</h1>
+        </ion-item>
     </ion-card-content>
 </ion-card>
