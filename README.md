@@ -19,7 +19,7 @@ Randomize your poetry lines to make the best stanzas, using Ionic Capacitor for 
 
 ## Beta Testers
 
-Hello! We're looking for beta testers. If you're a poetry lover or enjoy playing with words, this app is for you! Join our beta testing program and help us refine this unique Ionic app that lets you mash up poetry lines from famous poets to create your own poetic masterpieces. Be part of our creative journey and provide valuable feedback to shape the final product. Email me at [kartikinpublic@gmail.com](kartikinpublic@gmail.com) to sign up now and become a beta tester and experience the magic of poetic mashing with us! #BetaTestersWanted #PoetryMasher #IonicApp
+Hello! We're looking for beta testers. If you're a poetry lover or enjoy playing with words, this app is for you! Join our beta testing program and help us refine this unique Ionic app that lets you mash up your poetry lines to create your own poetic masterpieces. Be part of our creative journey and provide valuable feedback to shape the final product. Email me at [kartikinpublic@gmail.com](kartikinpublic@gmail.com) to sign up now and become a beta tester and experience the magic of poetic mashing with us! #BetaTestersWanted #PoetryMasher #IonicApp
 
 ## Installation
 
