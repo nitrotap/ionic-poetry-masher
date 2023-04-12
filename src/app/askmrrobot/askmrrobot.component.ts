@@ -45,7 +45,9 @@ export class AskmrrobotComponent implements OnInit {
           { role: "user", content: 'write a one line poem about ' + this.userText },
         ],
         temperature: 0.6,
-        max_tokens: 50
+        max_tokens: 100,
+        frequency_penalty: 2.0,
+        presence_penalty: 2.0,
       });
 
 

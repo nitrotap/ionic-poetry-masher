@@ -10,7 +10,8 @@
     <ion-card-content class="center">
         <ion-item>
             <ion-label>Enter text</ion-label>
-            <ion-input [(ngModel)]="userText" fill="solid" placeholder="Type a word"></ion-input>
+            <ion-input [(ngModel)]="userText" fill="solid" placeholder="Type a word"
+                aria-label="line generator"></ion-input>
         </ion-item>
         <ion-button (click)="getRobotText()">Get a line about {{userText}}</ion-button>
 
