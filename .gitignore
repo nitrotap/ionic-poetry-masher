@@ -1,6 +1,8 @@
 # User-definied Ignores
 android/
 iOS/
+environments.ts
+scratch.*
 
 
 # Template Ignores

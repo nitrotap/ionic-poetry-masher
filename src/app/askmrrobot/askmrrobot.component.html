@@ -1,0 +1,14 @@
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>
+            <h1>Ask A Robot</h1>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <h1>Enter 1 word to generate a line about it</h1>
+        <ion-input label="Text input" placeholder="Enter text" [(ngModel)]="userText"></ion-input>
+        <ion-button (click)="getRobotText()">Get a line about {{userText}}</ion-button>
+        <h1>Mr Robot says :</h1>
+        <h2>{{robotText}}</h2>
+    </ion-card-content>
+</ion-card>
