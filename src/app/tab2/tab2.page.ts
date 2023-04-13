@@ -320,11 +320,43 @@ export class Tab2Page {
     // by the reorder group
     ev.detail.complete();
 
-    // update checkedValues array with order of saved stanzas
+    // // update checkedValues array with order of saved stanzas
+    // let a = this.checkedValues[ev.detail.from];
+    // let b = this.checkedValues[ev.detail.to];
+    // this.checkedValues[ev.detail.from] = b;
+    // this.checkedValues[ev.detail.to] = a;
+
+    // Update checkedValues array with order of saved stanzas
     let a = this.checkedValues[ev.detail.from];
     let b = this.checkedValues[ev.detail.to];
-    this.checkedValues[ev.detail.from] = b;
+
+    // Check if indices are within bounds
+    if (ev.detail.from < 0 || ev.detail.from >= this.checkedValues.length ||
+      ev.detail.to < 0 || ev.detail.to >= this.checkedValues.length) {
+      console.error("Error: Indices are out of bounds.");
+      return;
+    }
+
+    // Move elements down in the array
+    if (ev.detail.from < ev.detail.to) {
+      for (let i = ev.detail.from; i < ev.detail.to; i++) {
+        this.checkedValues[i] = this.checkedValues[i + 1];
+      }
+    } else if (ev.detail.from > ev.detail.to) {
+      for (let i = ev.detail.from; i > ev.detail.to; i--) {
+        this.checkedValues[i] = this.checkedValues[i - 1];
+      }
+    } else {
+      // Indices are equal, no need to move elements
+      console.error("Error: Indices are equal.");
+      return;
+    }
+
+    // Insert the value at the target index
     this.checkedValues[ev.detail.to] = a;
+
+    console.log(this.checkedValues);
+
   }
 
 
