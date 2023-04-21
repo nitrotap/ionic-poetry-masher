@@ -2,14 +2,11 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
-import { Capacitor } from '@capacitor/core';
-import { Platform } from '@ionic/angular';
-import { Preferences } from '@capacitor/preferences';
 import { CommonModule } from '@angular/common';
 
 
 
-import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { FooterComponent } from '../footer/footer.component';
 
 
@@ -102,8 +99,6 @@ export class Tab3Page {
 
 
   constructor(
-    private actionSheetController: ActionSheetController,
-    private alertController: AlertController,
     private toastController: ToastController
   ) { }
 

@@ -3,13 +3,10 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ItemReorderEventDetail } from '@ionic/angular';
-import { IonCheckbox, IonLabel } from '@ionic/angular';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
-import { Capacitor } from '@capacitor/core';
-import { Platform } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 
-import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 import { FooterComponent } from '../footer/footer.component';
 
@@ -115,103 +112,6 @@ export class Tab2Page {
     }
   }
 
-
-
-  // async saveStanza() {
-
-
-  //   await Filesystem.requestPermissions();
-
-  //   await Filesystem.checkPermissions();
-
-
-
-
-
-  //   if (this.checkedValues.length === 0) {
-  //     const alert = await this.toastController.create({
-  //       message: 'Error! Stanza not saved. No checked lines.',
-  //       duration: 2000,
-  //       position: 'bottom',
-  //       color: 'danger'
-
-  //     });
-  //     await alert.present();
-
-  //   } else {
-  //     try {
-
-  //       await this.saveArrayToFileSystem(this.checkedValues)
-  //       const alert = await this.toastController.create({
-  //         message: 'Stanza saved',
-  //         duration: 2000,
-  //         position: 'bottom',
-  //         color: 'success'
-
-  //       });
-  //       await alert.present();
-  //     } catch (error) {
-  //       const alert = await this.toastController.create({
-  //         message: 'Error! Stanza not saved. No checked lines. or ' + error,
-  //         duration: 2000,
-  //         position: 'top',
-  //         color: 'danger'
-
-  //       });
-  //       await alert.present();
-
-  //     }
-  //   }
-  // }
-
-  // async saveStanza() {
-  //   try {
-  //     // Request permission
-  //     await Filesystem.requestPermissions();
-
-  //     // Check permission
-  //     const permissionResult = await Filesystem.checkPermissions();
-  //     if (permissionResult.publicStorage === 'granted') {
-  //       // Permission granted, proceed with saving stanza
-  //       if (this.checkedValues.length === 0) {
-  //         const alert = await this.toastController.create({
-  //           message: 'Error! Stanza not saved. No checked lines.',
-  //           duration: 2000,
-  //           position: 'bottom',
-  //           color: 'danger'
-  //         });
-  //         await alert.present();
-  //       } else {
-  //         await this.saveArrayToFileSystem(this.checkedValues);
-  //         const alert = await this.toastController.create({
-  //           message: 'Stanza saved',
-  //           duration: 2000,
-  //           position: 'bottom',
-  //           color: 'success'
-  //         });
-  //         await alert.present();
-  //       }
-  //     } else {
-  //       // Permission denied
-  //       const alert = await this.toastController.create({
-  //         message: 'Error! Stanza not saved. Permission denied.',
-  //         duration: 2000,
-  //         position: 'top',
-  //         color: 'danger'
-  //       });
-  //       await alert.present();
-  //     }
-  //   } catch (error) {
-  //     // Handle other errors
-  //     const alert = await this.toastController.create({
-  //       message: 'Error! Stanza not saved. ' + error,
-  //       duration: 2000,
-  //       position: 'top',
-  //       color: 'danger'
-  //     });
-  //     await alert.present();
-  //   }
-  // }
 
   async saveStanza() {
     try {

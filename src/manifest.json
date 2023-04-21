@@ -1,0 +1,9 @@
+{
+    "name": "Poetry Line Masher",
+    "short_name": "Line Mash",
+    "start_url": ".",
+    "display": "standalone",
+    "description": "Poetry tool to organize and randomize your lines."
+ 
+  }
+  
